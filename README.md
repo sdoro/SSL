@@ -27,3 +27,11 @@
 		./demoCA/private/.gitkeep
 	git add demoCA
 
+### 2. requesting/Creating/verifying a Certificate
+
+	openssl genrsa -out userA/privkeyA.pem -F4 1024 -config ./openssl.cnf
+	openssl req -new -key userA/privkeyA.pem -out userA/certA.csr \
+		-config ./openssl.cnf
+	openssl ca -in userA/certA.csr -out userA/cert-A.pem -config ./openssl.cnf
+	openssl verify -CAfile demoCA/cacert.pem userA/cert-A.pem
+
