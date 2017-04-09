@@ -52,3 +52,9 @@
 		-out decrypted.txt
 	cat decrypted.txt
 
+### 4. signing with RSA
+
+	openssl rsautl -sign -inkey userA/privkeyA.pem -in message.txt \
+		-out message.sgn
+	openssl rsautl -verify -in message.sgn -certin -inkey userA/cert-A.pem
+
