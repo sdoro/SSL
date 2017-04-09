@@ -1,1 +1,2 @@
 V	270407212329Z		02	unknown	/C=IT/ST=Italy/O=MIUR/OU=R&D/CN=c1.gov.it/emailAddress=c1@gov.it
+V	180409213757Z		03	unknown	/C=IT/ST=Italy/O=MIUR/OU=R&D/CN=userB.gov.it/emailAddress=userB@gov.it

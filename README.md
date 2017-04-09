@@ -35,3 +35,20 @@
 	openssl ca -in userA/certA.csr -out userA/cert-A.pem -config ./openssl.cnf
 	openssl verify -CAfile demoCA/cacert.pem userA/cert-A.pem
 
+### 3. encrypting with RSA
+
+	mkdir userB
+	openssl genrsa -out userB/privkeyB.pem -F4 1024 -config ./openssl.cnf
+	openssl req -new -key userB/privkeyB.pem -out userB/certB.csr \
+		-config ./openssl.cnf
+	openssl ca -in userB/certB.csr -out userB/cert-B.pem
+	openssl verify -CAfile demoCA/cacert.pem userB/cert-B.pem
+	#
+	echo "A private message" > message.txt
+	openssl rsautl -encrypt -certin -inkey userB/cert-B.pem -in message.txt \
+		-out ciphertext.ssl
+	ls -l ciphertext.ssl
+	openssl rsautl -decrypt -inkey userB/privkeyB.pem -in ciphertext.ssl \
+		-out decrypted.txt
+	cat decrypted.txt
+
